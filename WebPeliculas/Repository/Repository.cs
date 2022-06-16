@@ -11,11 +11,11 @@ using WebPeliculas.Repositorio.IRepositorio;
 
 namespace WebPeliculas.Repositorio
 {
-    public class Repositorio<T> : IRepositorio<T> where T : class
+    public class Repository<T> : IRepository<T> where T : class
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public Repositorio(IHttpClientFactory httpClientFactory)
+        public Repository(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
@@ -74,7 +74,7 @@ namespace WebPeliculas.Repositorio
             }
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync(string url)
+        public async Task<IEnumerable> GetAllAsync(string url)
         {
             try
             {
@@ -87,7 +87,7 @@ namespace WebPeliculas.Repositorio
                 if (resp.StatusCode == HttpStatusCode.OK)
                 {
                     var jsonString = await resp.Content.ReadAsStringAsync();
-                    return JsonConvert.DeserializeObject<IEnumerable<T>>(jsonString);
+                    return JsonConvert.DeserializeObject<IEnumerable>(jsonString);
                 }
 
                 return null;

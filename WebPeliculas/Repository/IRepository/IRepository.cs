@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace WebPeliculas.Repositorio.IRepositorio
 {
-    public interface IRepositorio<T> where T : class
+    public interface IRepository<T> where T : class
     {
-        Task<IEnumerable<T>> GetAllAsync(string url);
+        Task<IEnumerable> GetAllAsync(string url);
         Task<T> GetAsync(string url, int id);
         Task<bool> CreateAsync(string url, T item);
         Task<bool> UpdateAsync(string url, T item);
